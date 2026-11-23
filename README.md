@@ -1,5 +1,14 @@
 # Site survey · Pisos 3, 4 y 5 · Duoc UC Viña del Mar
 
+> [!IMPORTANT]
+> **Herramienta de laboratorio.** Este site survey se hizo como ejercicio académico (lab) para el ramo TRY1101. Usa un modelo simplificado (pérdida por distancia y por muro) con valores de atenuación típicos, no medidos en el edificio, así que sus resultados son referenciales.
+>
+> Para un diseño real con mayor precisión se recomienda usar herramientas profesionales u oficiales:
+> - **Huawei WLAN Planner**: la herramienta oficial del fabricante, con los patrones de antena reales del AirEngine 5761-11.
+> - **Ekahau AI Pro**, **Hamina** o **iBwave**: diseño predictivo profesional.
+>
+> Después de instalar, también se recomienda hacer un **site survey en terreno** (pasivo y activo) con Ekahau Sidekick, NetSpot o similar.
+
 Herramienta interactiva de site survey predictivo usada en el proyecto semestral de **TRY1101 Tecnología de Redes Inalámbricas** (Duoc UC, Ingeniería en Conectividad y Redes).
 
 Simula la cobertura WiFi de los pisos 3, 4 y 5 con 21 APs Huawei AirEngine 5761-11 por piso (63 en total), en 2,4 GHz y 5 GHz:
@@ -22,15 +31,6 @@ Simula la cobertura WiFi de los pisos 3, 4 y 5 con 21 APs Huawei AirEngine 5761-
 | Área con 2 o más APs (roaming) | 98,2 % | 87,9 % |
 | Área con SINR ≥ 25 dB | 98,9 % | 63,4 % |
 | APs con radio activa | 21 | 6 |
-
-> [!IMPORTANT]
-> **Herramienta de laboratorio.** Este site survey se hizo como ejercicio académico (lab) para el ramo TRY1101. Usa un modelo simplificado (pérdida por distancia y por muro) con valores de atenuación típicos, no medidos en el edificio, así que sus resultados son referenciales.
->
-> Para un diseño real con mayor precisión se recomienda usar herramientas profesionales u oficiales:
-> - **Huawei WLAN Planner**: la herramienta oficial del fabricante, con los patrones de antena reales del AirEngine 5761-11.
-> - **Ekahau AI Pro**, **Hamina** o **iBwave**: diseño predictivo profesional.
->
-> Después de instalar, también se recomienda hacer un **site survey en terreno** (pasivo y activo) con Ekahau Sidekick, NetSpot o similar.
 
 ## Documentación
 
