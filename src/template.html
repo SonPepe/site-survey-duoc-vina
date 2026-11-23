@@ -1,0 +1,685 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Site Survey Pisos 3, 4 y 5</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: instrument panel — plano a la izquierda como "papel" de trabajo, consola de ajustes a la derecha; apila en teléfono. */
+:root{
+  --bg:#eef1f5; --surface:#ffffff; --surface-2:#f6f8fb; --ink:#16202c; --muted:#5a6677; --line:#d6dce5;
+  --accent:#2346c7; --accent-soft:#e3e9fb; --accent-ink:#ffffff;
+  --good:#1d7f47; --good-soft:#dff3e7; --warn:#9a6512; --warn-soft:#fbefd6; --bad:#b8352a; --bad-soft:#fbe3e0;
+  --paper:#ffffff;
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e131a; --surface:#151c26; --surface-2:#1b2431; --ink:#e5eaf1; --muted:#98a4b5; --line:#2a3544;
+  --accent:#8aa4ff; --accent-soft:#1f2a4d; --accent-ink:#0b1020;
+  --good:#5cc68c; --good-soft:#163323; --warn:#e2b45a; --warn-soft:#3a2d12; --bad:#f07466; --bad-soft:#3d1c19;
+  --paper:#f4f5f2; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e131a; --surface:#151c26; --surface-2:#1b2431; --ink:#e5eaf1; --muted:#98a4b5; --line:#2a3544;
+  --accent:#8aa4ff; --accent-soft:#1f2a4d; --accent-ink:#0b1020;
+  --good:#5cc68c; --good-soft:#163323; --warn:#e2b45a; --warn-soft:#3a2d12; --bad:#f07466; --bad-soft:#3d1c19;
+  --paper:#f4f5f2; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 32px}
+.wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.05;margin:4px 0 0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-weight:600;font-size:16px;margin:0;letter-spacing:.01em}
+.sub{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.kpi{background:var(--surface);padding:10px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .lbl{font-size:11.5px;color:var(--muted)}
+.kpi .val{font-family:var(--f-mono);font-size:22px;font-weight:500;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.kpi .val small{font-size:12px;color:var(--muted)}
+.pill{font-family:var(--f-body);font-size:11px;font-weight:600;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.pill.good{background:var(--good-soft);color:var(--good)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad{background:var(--bad-soft);color:var(--bad)}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;align-items:start}
+.mapcol{display:flex;flex-direction:column;gap:10px;min-width:0}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;color:var(--ink);font:500 13px var(--f-body);padding:7px 11px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg button:focus-visible,.btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tlabel{font-size:11.5px;color:var(--muted);margin-right:-6px}
+.mapframe{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+canvas#map{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
+canvas#map.adding{cursor:copy} canvas#map.deleting{cursor:not-allowed} canvas#map.dragging{cursor:grabbing}
+.busy{position:absolute;top:10px;left:10px;background:rgba(22,32,44,.85);color:#fff;font:500 12px var(--f-body);padding:4px 9px;border-radius:6px}
+.readout{font-family:var(--f-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:8px 12px;min-height:38px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.readout b{font-weight:500;color:var(--accent)}
+.legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.ramp{display:flex;height:12px;border-radius:3px;overflow:hidden;min-width:220px;flex:1;max-width:420px;border:1px solid var(--line)}
+.ramp span{flex:1}
+.ticks{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;color:var(--muted);max-width:420px;min-width:220px;flex:1}
+.legendcol{display:flex;flex-direction:column;gap:3px;flex:1;min-width:220px;max-width:420px}
+.legendcol .ramp,.legendcol .ticks{flex:none;max-width:none;min-width:0;width:100%}
+.panel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card .head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.muted{color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label,.flabel{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input[type=text],select,input[type=number],textarea{font:400 13px var(--f-body);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%;min-width:0}
+input[type=number]{font-family:var(--f-mono)}
+textarea{font-family:var(--f-mono);font-size:11.5px;min-height:110px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.rangeval{font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.check{display:flex;gap:8px;align-items:center;font-size:13px}
+.check input{accent-color:var(--accent);width:16px;height:16px}
+.btn{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:6px;padding:7px 11px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.danger{color:var(--bad)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.bandbox{border:1px solid var(--line);border-radius:7px;padding:10px;display:flex;flex-direction:column;gap:8px;background:var(--surface-2)}
+.bandbox.off{opacity:.55}
+.empty{font-size:13px;color:var(--muted);padding:6px 0}
+.tablewrap{overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 8px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{position:sticky;top:0;background:var(--surface-2);font-weight:600;font-size:11.5px;color:var(--muted)}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+tbody tr{cursor:pointer} tbody tr:hover td{background:var(--accent-soft)}
+tbody tr.sel td{background:var(--accent-soft)}
+.loss th,.loss td{padding:4px 6px}
+.loss input{width:58px;padding:3px 5px;text-align:right}
+details>summary{cursor:pointer;font-family:var(--f-display);font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details>summary::after{content:"+";font-family:var(--f-mono);color:var(--muted)}
+details[open]>summary::after{content:"−"}
+details[open]>summary{margin-bottom:12px}
+.notes{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.notes p{margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:7px;font-size:13px;z-index:20}
+kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 4px;background:var(--surface-2)}
+@media (max-width:1100px){.main{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi .val{font-size:19px}.grid2{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Site survey predictivo · Huawei AirEngine 5761-11</div>
+      <h1>Pisos 3, 4 y 5 · <span id="hFloor">Piso 3</span></h1>
+      <p class="sub">Los tres pisos tienen la misma planta. Elige un piso, arrastra sus APs y mira cómo cambia la cobertura. El modelo calcula la señal con la pérdida por distancia y por cada muro que cruza.</p>
+    </div>
+    <div class="btns">
+      <div class="seg" role="group" aria-label="Piso"><button id="fl3" aria-pressed="true">Piso 3</button><button id="fl4" aria-pressed="false">Piso 4</button><button id="fl5" aria-pressed="false">Piso 5</button></div>
+      <button class="btn" id="btnPreset">Cargar diseño sugerido</button>
+      <button class="btn" id="btnClear">Vaciar plano</button>
+    </div>
+  </header>
+
+  <section class="kpis" aria-label="Resumen de cobertura">
+    <div class="kpi"><span class="lbl" id="kCovLbl">Área con ≥ −67 dBm</span><span class="val"><span id="kCov">—</span><span class="pill" id="kCovPill"></span></span></div>
+    <div class="kpi"><span class="lbl">Señal más baja en área útil</span><span class="val"><span id="kMin">—</span><small>dBm</small></span></div>
+    <div class="kpi"><span class="lbl">Área con 2 o más APs (roaming)</span><span class="val"><span id="kRoam">—</span></span></div>
+    <div class="kpi"><span class="lbl">Área con SINR ≥ 25 dB</span><span class="val"><span id="kSinr">—</span></span></div>
+    <div class="kpi"><span class="lbl" id="kApsLbl">APs del piso en la banda</span><span class="val"><span id="kAps">—</span><small id="kApsSub"></small></span></div>
+  </section>
+
+  <div class="main">
+    <div class="mapcol">
+      <div class="toolbar">
+        <span class="tlabel">Herramienta</span>
+        <div class="seg" role="group" aria-label="Herramienta">
+          <button id="mMove" aria-pressed="true">Mover</button>
+          <button id="mAdd" aria-pressed="false">Añadir AP</button>
+          <button id="mDel" aria-pressed="false">Quitar AP</button>
+        </div>
+        <span class="tlabel">Banda</span>
+        <div class="seg" role="group" aria-label="Banda">
+          <button id="b5" aria-pressed="true">5 GHz</button>
+          <button id="b24" aria-pressed="false">2,4 GHz</button>
+        </div>
+        <span class="tlabel">Vista</span>
+        <div class="seg" role="group" aria-label="Vista">
+          <button id="vRssi" aria-pressed="true">Señal</button>
+          <button id="vSinr" aria-pressed="false">SINR</button>
+          <button id="vOver" aria-pressed="false">Solape</button>
+          <button id="vServ" aria-pressed="false">AP que atiende</button>
+        </div>
+      </div>
+      <div class="mapframe">
+        <canvas id="map" width="1100" height="620" aria-label="Plano del piso 3 con mapa de calor de cobertura WiFi"></canvas>
+        <div class="busy" id="busy" hidden>Calculando…</div>
+      </div>
+      <div class="readout" id="readout">Pasa el cursor o toca el plano para ver la señal en ese punto.</div>
+      <div class="legend">
+        <span id="legTitle">Señal (dBm)</span>
+        <div class="legendcol"><div class="ramp" id="ramp"></div><div class="ticks" id="ticks"></div></div>
+        <label class="check"><input type="checkbox" id="showWalls"> Ver muros detectados</label>
+        <label class="check" style="gap:6px">Opacidad <input type="range" id="opacity" min="20" max="90" value="62" style="width:90px"></label>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <div class="card" id="apCard">
+        <div class="head"><h2>AP seleccionado</h2><span class="muted" id="apCount"></span></div>
+        <div id="apEmpty" class="empty">Toca un AP en el plano para editarlo. Con <b>Añadir AP</b> activo, cada toque en el plano agrega uno nuevo. Con un AP seleccionado puedes moverlo con las flechas y quitarlo con <kbd>Supr</kbd>.</div>
+        <div id="apForm" hidden>
+          <div class="field"><label for="apName">Nombre</label><input type="text" id="apName"></div>
+          <div class="bandbox" id="box5">
+            <label class="check"><input type="checkbox" id="on5"> Radio 5 GHz</label>
+            <div class="grid2">
+              <div class="field"><label for="ch5">Canal</label><select id="ch5"></select></div>
+              <div class="field"><label for="p5">Potencia <span class="rangeval" id="p5v"></span></label><input type="range" id="p5" min="3" max="27" step="1"></div>
+            </div>
+          </div>
+          <div class="bandbox" id="box24">
+            <label class="check"><input type="checkbox" id="on24"> Radio 2,4 GHz</label>
+            <div class="grid2">
+              <div class="field"><label for="ch24">Canal</label><select id="ch24"></select></div>
+              <div class="field"><label for="p24">Potencia <span class="rangeval" id="p24v"></span></label><input type="range" id="p24" min="3" max="27" step="1"></div>
+            </div>
+          </div>
+          <div class="row"><span class="muted" id="apPos"></span><button class="btn danger" id="apDelete">Quitar AP</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="head"><h2>Cobertura por sala</h2><span class="muted" id="roomBand"></span></div>
+        <div class="tablewrap">
+          <table id="roomTable"><thead><tr><th>Sala</th><th>Prom.</th><th>Mín.</th><th>≥ umbral</th><th>AP principal</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+      <details class="card" open>
+        <summary>Ajustes del diseño</summary>
+        <div class="grid2">
+          <div class="field"><label for="thr">Umbral de diseño</label>
+            <select id="thr"><option value="-65">−65 dBm · voz exigente</option><option value="-67" selected>−67 dBm · voz y video</option><option value="-70">−70 dBm · datos</option><option value="-75">−75 dBm · básico</option></select></div>
+          <div class="field"><label for="width5">Ancho de canal 5 GHz</label>
+            <select id="width5"><option value="20">20 MHz</option><option value="40" selected>40 MHz</option><option value="80">80 MHz</option></select></div>
+        </div>
+        <div class="btns">
+          <button class="btn primary" id="btnAuto">Asignar canales automáticamente</button>
+        </div>
+        <label class="check"><input type="checkbox" id="noDfs"> Evitar canales DFS (52–144) al asignar</label>
+        <label class="check"><input type="checkbox" id="inclBath"> Contar el baño en la cobertura</label>
+      </details>
+
+      <details class="card">
+        <summary>Modelo de propagación</summary>
+        <div class="grid2">
+          <div class="field"><label for="nExp">Exponente de pérdida n <span class="rangeval" id="nExpV"></span></label><input type="range" id="nExp" min="1.8" max="3.5" step="0.1"></div>
+          <div class="field"><label for="noise">Piso de ruido (20 MHz) <span class="rangeval" id="noiseV"></span></label><input type="range" id="noise" min="-100" max="-80" step="1"></div>
+          <div class="field"><label for="apH">Altura de los APs (m)</label><input type="number" id="apH" min="2" max="6" step="0.1"></div>
+          <div class="field"><label for="cliH">Altura del usuario (m)</label><input type="number" id="cliH" min="0.5" max="2" step="0.1"></div>
+        </div>
+        <div class="flabel">Atenuación por muro (dB)</div>
+        <div class="tablewrap" style="max-height:none">
+          <table class="loss"><thead><tr><th>Material</th><th>2,4 GHz</th><th>5 GHz</th></tr></thead><tbody id="lossBody"></tbody></table>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>Guardar y compartir</summary>
+        <p class="muted" style="margin:0;font-size:12.5px">El diseño se guarda en este navegador. Para llevarlo a otro equipo, copia el JSON y pégalo allá.</p>
+        <div class="btns">
+          <button class="btn" id="btnCopyJson">Copiar JSON</button>
+          <button class="btn" id="btnCopyCsv">Copiar tabla de APs</button>
+          <button class="btn" id="btnImport">Importar JSON</button>
+        </div>
+        <textarea id="io" placeholder="Pega aquí un diseño en JSON y presiona Importar JSON" aria-label="Diseño en JSON"></textarea>
+      </details>
+
+      <details class="card">
+        <summary>Cómo calcula</summary>
+        <div class="notes">
+          <p>Señal = potencia + ganancia de antena − pérdida en espacio libre a 1 m − 10·n·log₁₀(d) − suma de muros cruzados. La distancia d es 3D, con el AP en el cielo y el usuario a la altura indicada.</p>
+          <p>AirEngine 5761-11: 2×2:2 en cada banda, hasta 27 dBm combinados por radio. Ganancia combinada de antena: 2 dBi en 2,4 GHz y 3 dBi en 5 GHz. Revisa estos valores contra el datasheet oficial de Huawei.</p>
+          <p>Los muros salen del plano a escala (30 px = 1 m). Los pisos 3, 4 y 5 usan la misma planta. Los vacíos del atrio, las escaleras y el núcleo de ascensores no se cuentan como área útil.</p><p>La asignación automática de canales desplaza el plan en cada piso para que los APs de pisos vecinos no queden en el mismo canal. El modelo no calcula la interferencia entre pisos.</p>
+          <p>SINR considera el ruido y la señal de los otros APs en el mismo canal. Es una predicción: valídala con mediciones reales en terreno.</p>
+        </div>
+      </details>
+    </aside>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+"use strict";
+const PLAN_SRC="__PLAN__";
+const GRID_B64="__GRID__";
+const PX=30, PW=2200, PH=1240, WM=PW/PX, HM=PH/PX;
+const GC=0.2, GW=367, GH=207;
+const HC=0.5, HX=Math.ceil(WM/HC), HY=Math.ceil(HM/HC), NC=HX*HY;
+const grid=(()=>{const s=atob(GRID_B64);const a=new Uint8Array(s.length);for(let i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return a;})();
+
+const INTERIOR={x0:0.83,y0:0.83,x1:72.53,y1:40.53};
+const VOIDS=[
+  [11.8,4.6,21.1,18.93],[11.8,27.6,21.23,40.53],[46.23,4.6,53.53,18.93],[46.23,29.4,53.53,40.53],
+  [19.17,21.77,31.17,23.77],[33.67,21.77,46.17,23.77],
+  [21.23,15.93,31.1,18.9]
+];
+const ROOMS=[
+  ["311",0.83,0.83,8.8,5.3,"aula"],["312",0.83,5.3,8.8,9.93,"aula"],["313",0.83,9.93,8.8,14.57,"aula"],
+  ["314",0.83,14.57,8.8,19.2,"aula"],["315",0.83,19.2,8.8,23.85,"aula"],["316",0.83,29.65,8.8,35.05,"aula"],
+  ["Estar SSGG",0.83,35.05,8.8,40.53,"oficina"],
+  ["321",21.23,4.73,31.1,8.15,"aula"],["322",21.23,8.15,31.1,11.95,"aula"],["323",21.23,11.95,31.1,15.93,"aula"],
+  ["331",36.23,4.73,46.1,8.15,"aula"],["332",36.23,8.15,46.1,11.95,"aula"],["333",36.23,11.95,46.1,16.05,"aula"],
+  ["Baño mujeres",36.23,16.05,46.1,18.85,"bano"],
+  ["341",59.73,0.83,67.8,6.35,"aula"],["342",59.73,6.35,67.8,9.65,"aula"],["343",59.73,9.65,67.8,16.65,"aula"],["344",59.73,16.65,67.8,23.65,"aula"],
+  ["Dirección",21.23,29.53,46.1,40.53,"oficina"],["Depto. Administrativo",59.73,30.23,67.8,40.53,"oficina"],
+  ["Pasillos y hall",0,0,0,0,"pasillo"]
+].map((r,i)=>({name:r[0],x0:r[1],y0:r[2],x1:r[3],y1:r[4],kind:r[5],i}));
+const CORR=ROOMS.length-1;
+const MATS=[
+  {id:1,name:"Muro exterior hormigón",l24:15,l5:20,col:"#111"},
+  {id:2,name:"Núcleo ascensores",l24:18,l5:25,col:"#555"},
+  {id:3,name:"Columna hormigón",l24:15,l5:20,col:"#e0201c"},
+  {id:4,name:"Tabique metalcon",l24:3,l5:5,col:"#e8820c"},
+  {id:5,name:"Vidrio de sala",l24:2,l5:4,col:"#0b6be0"},
+  {id:6,name:"Baranda de vidrio",l24:1,l5:2,col:"#7ab8f0"}
+];
+const GAIN={"5":3,"24":2};
+const FS1M={"5":47.0,"24":40.2};
+const CH24=[1,6,11];
+const CH5={
+  20:[36,40,44,48,52,56,60,64,100,104,108,112,116,120,124,128,132,136,140,144,149,153,157,161,165],
+  40:[36,44,52,60,100,108,116,124,132,140,149,157],
+  80:[36,52,100,116,132,149]
+};
+const isDfs=c=>c>=52&&c<=144;
+function chLabel5(c,w){
+  if(w==20) return c+(isDfs(c)?" · DFS":"");
+  const n=w==40?2:4; const last=c+4*(n-1);
+  return c+"–"+last+(isDfs(c)?" · DFS":"");
+}
+
+// ---- cell classification ----
+// cellRoom: -3 outside, -2 void, else room index (CORR for corridor)
+const cellRoom=new Int16Array(NC);
+const inR=(x,y,r)=>x>=r[0]&&x<r[2]&&y>=r[1]&&y<r[3];
+for(let j=0;j<HY;j++)for(let i=0;i<HX;i++){
+  const x=(i+.5)*HC,y=(j+.5)*HC,c=j*HX+i;
+  if(x<INTERIOR.x0||x>INTERIOR.x1||y<INTERIOR.y0||y>INTERIOR.y1){cellRoom[c]=-3;continue;}
+  if(VOIDS.some(v=>inR(x,y,v))){cellRoom[c]=-2;continue;}
+  let r=CORR;
+  for(const R of ROOMS){if(R.kind!=="pasillo"&&x>=R.x0&&x<R.x1&&y>=R.y0&&y<R.y1){r=R.i;break;}}
+  cellRoom[c]=r;
+}
+
+// ---- state ----
+const DEF_SETTINGS={band:"5",view:"rssi",thr:-67,width5:40,n:2.2,noise:-95,apH:3.0,cliH:1.2,noDfs:false,inclBath:false,opacity:62,showWalls:false,
+  loss:Object.fromEntries(MATS.map(m=>[m.id,{"24":m.l24,"5":m.l5}]))};
+let S=JSON.parse(JSON.stringify(DEF_SETTINGS));
+let APS=[]; let nextId=1; let sel=null; let mode="move";
+const STORE="ss-pisos-345-v1";
+const FLOORS=[3,4,5]; let FL=3; const DESIGNS={3:null,4:null,5:null};
+const roomName=n=>/^3\d\d$/.test(n)?String(FL)+n.slice(1):n;
+
+function presetAps(){
+  const P=[["AP 311",4.8,3.1],["AP 312",4.8,7.6],["AP 313",4.8,12.2],["AP 314",4.8,16.9],["AP 315",4.8,21.5],["AP 316",4.8,32.3],
+    ["AP 321",26.2,6.4],["AP 322",26.2,10.0],["AP 323",26.2,13.9],["AP 331",41.2,6.4],["AP 332",41.2,10.0],["AP 333",41.2,14.0],
+    ["AP 341",63.8,3.6],["AP 342",63.8,8.0],["AP 343",63.8,13.1],["AP 344",63.8,20.1],
+    ["AP Dirección A",28.0,35.0],["AP Dirección B",39.5,35.0],["AP Depto. Adm.",63.8,35.4],
+    ["AP Hall O",14.5,25.6],["AP Hall E",40.0,26.2]];
+  const with24=new Set(["AP 312","AP 316","AP Hall O","AP 332","AP 343","AP Depto. Adm."]);
+  nextId=1;
+  return P.map(p=>mkAp(p[0].replace(/AP 3(\d\d)/,"AP "+FL+"$1"),p[1],p[2],{on24:with24.has(p[0])}));
+}
+function mkAp(name,x,y,o={}){
+  return {id:nextId++,name,x,y,on5:o.on5??true,on24:o.on24??false,p5:o.p5??17,p24:o.p24??11,ch5:o.ch5??36,ch24:o.ch24??1,cnt:null,sig:{}};
+}
+
+// ---- ray tracing on wall grid ----
+function trace(ap){
+  const out=new Uint8Array(NC*6);
+  const x0=ap.x/GC,y0=ap.y/GC;
+  let scx=Math.floor(x0),scy=Math.floor(y0);
+  const startMat=(scx>=0&&scy>=0&&scx<GW&&scy<GH)?grid[scy*GW+scx]:0;
+  for(let j=0;j<HY;j++){
+    for(let i=0;i<HX;i++){
+      const c=j*HX+i; if(cellRoom[c]===-3) continue;
+      const x1=((i+.5)*HC)/GC,y1=((j+.5)*HC)/GC;
+      let cx=scx,cy=scy; const ex=Math.floor(x1),ey=Math.floor(y1);
+      const dx=x1-x0,dy=y1-y0; const sx=dx>0?1:-1,sy=dy>0?1:-1;
+      const tdx=dx!==0?Math.abs(1/dx):1e30,tdy=dy!==0?Math.abs(1/dy):1e30;
+      let tmx=dx!==0?(dx>0?(cx+1-x0):(x0-cx))*tdx:1e30;
+      let tmy=dy!==0?(dy>0?(cy+1-y0):(y0-cy))*tdy:1e30;
+      let prev=startMat; let n=Math.abs(ex-cx)+Math.abs(ey-cy); const o=c*6;
+      while(n-->0){
+        if(tmx<tmy){tmx+=tdx;cx+=sx;}else{tmy+=tdy;cy+=sy;}
+        const m=(cx<0||cy<0||cx>=GW||cy>=GH)?0:grid[cy*GW+cx];
+        if(n>0&&m!==0&&m!==prev&&out[o+m-1]<255) out[o+m-1]++;
+        prev=m;
+      }
+    }
+  }
+  ap.cnt=out; ap.sig={};
+}
+function signal(ap,band){
+  if(ap.sig[band]) return ap.sig[band];
+  if(!ap.cnt) trace(ap);
+  const s=new Float32Array(NC); const L=MATS.map(m=>+S.loss[m.id][band]);
+  const P=(band==="5"?ap.p5:ap.p24)+GAIN[band]; const fs=FS1M[band]; const dh=S.apH-S.cliH; const dh2=dh*dh; const k=10*S.n;
+  const cnt=ap.cnt;
+  for(let j=0;j<HY;j++)for(let i=0;i<HX;i++){
+    const c=j*HX+i; if(cellRoom[c]===-3){s[c]=-200;continue;}
+    const dx=(i+.5)*HC-ap.x,dy=(j+.5)*HC-ap.y; const d=Math.max(1,Math.sqrt(dx*dx+dy*dy+dh2));
+    const o=c*6; const w=cnt[o]*L[0]+cnt[o+1]*L[1]+cnt[o+2]*L[2]+cnt[o+3]*L[3]+cnt[o+4]*L[4]+cnt[o+5]*L[5];
+    s[c]=P-fs-k*Math.log10(d)-w;
+  }
+  ap.sig[band]=s; return s;
+}
+const invalidateSig=()=>APS.forEach(a=>a.sig={});
+
+// ---- aggregate ----
+let AGG=null;
+function overlap(band,a,b){return band==="5"?a===b:Math.abs(a-b)<5;}
+function aggregate(){
+  const band=S.band; const list=APS.filter(a=>band==="5"?a.on5:a.on24);
+  const best=new Float32Array(NC).fill(-200), bi=new Int16Array(NC).fill(-1), cntThr=new Uint8Array(NC), sinr=new Float32Array(NC).fill(-50);
+  const sigs=list.map(a=>signal(a,band)); const chs=list.map(a=>band==="5"?a.ch5:a.ch24);
+  const thr=S.thr; const bw=band==="5"?S.width5:20; const Nmw=Math.pow(10,(S.noise+10*Math.log10(bw/20))/10);
+  for(let c=0;c<NC;c++){
+    if(cellRoom[c]===-3) continue;
+    let b=-200,k=-1,n=0;
+    for(let a=0;a<sigs.length;a++){const v=sigs[a][c]; if(v>b){b=v;k=a;} if(v>=thr)n++;}
+    best[c]=b; bi[c]=k; cntThr[c]=n;
+    if(k>=0){let I=Nmw; for(let a=0;a<sigs.length;a++){ if(a!==k&&overlap(band,chs[a],chs[k])) I+=Math.pow(10,sigs[a][c]/10);} sinr[c]=b-10*Math.log10(I);}
+  }
+  AGG={list,best,bi,cntThr,sinr,band};
+  stats();
+}
+function usable(c){const r=cellRoom[c]; if(r<0) return false; if(!S.inclBath&&ROOMS[r].kind==="bano") return false; return true;}
+function stats(){
+  const {best,cntThr,sinr,list}=AGG; let tot=0,cov=0,roam=0,sg=0,min=999;
+  const rs=ROOMS.map(()=>({n:0,sum:0,min:999,cov:0,serv:{}}));
+  for(let c=0;c<NC;c++){
+    const r=cellRoom[c]; if(r<0) continue; const v=best[c];
+    const R=rs[r]; R.n++; R.sum+=Math.max(v,-100); R.min=Math.min(R.min,v); if(v>=S.thr)R.cov++;
+    if(AGG.bi[c]>=0){const nm=list[AGG.bi[c]].name; R.serv[nm]=(R.serv[nm]||0)+1;}
+    if(!usable(c)) continue;
+    tot++; if(v>=S.thr)cov++; if(cntThr[c]>=2)roam++; if(sinr[c]>=25)sg++; if(v<min)min=v;
+  }
+  const pct=x=>tot?(100*x/tot):0;
+  const covP=pct(cov);
+  $("kCovLbl").textContent="Área con ≥ "+fmtDb(S.thr)+" dBm";
+  $("kCov").textContent=list.length?covP.toFixed(1)+" %":"—";
+  const pill=$("kCovPill");
+  if(!list.length){pill.textContent="";pill.className="pill";}
+  else if(covP>=99){pill.textContent="Cumple";pill.className="pill good";}
+  else if(covP>=95){pill.textContent="Casi";pill.className="pill warn";}
+  else {pill.textContent="No cumple";pill.className="pill bad";}
+  $("kMin").textContent=list.length?fmtDb(Math.round(min)):"—";
+  $("kRoam").textContent=list.length?pct(roam).toFixed(1)+" %":"—";
+  $("kSinr").textContent=list.length?pct(sg).toFixed(1)+" %":"—";
+  const n5=APS.filter(a=>a.on5).length,n24=APS.filter(a=>a.on24).length;
+  $("kAps").textContent=list.length; $("kApsSub").textContent="· "+totalAps()+" en los 3 pisos";
+  $("apCount").textContent=APS.length+" APs en el piso "+FL;
+  $("roomBand").textContent=S.band==="5"?"5 GHz":"2,4 GHz";
+  const tb=$("roomTable").tBodies[0]; tb.innerHTML="";
+  ROOMS.forEach((R,i)=>{
+    const s=rs[i]; if(!s.n) return;
+    const avg=s.sum/s.n, cp=100*s.cov/s.n; const top=Object.entries(s.serv).sort((a,b)=>b[1]-a[1])[0];
+    const tr=document.createElement("tr"); if(hiRoom===i) tr.className="sel";
+    const cls=cp>=99?"good":cp>=90?"warn":"bad";
+    tr.innerHTML=`<td>${esc(roomName(R.name))}${R.kind==="bano"&&!S.inclBath?' <span class="muted">(excluido)</span>':''}</td><td class="num">${list.length?fmtDb(Math.round(avg)):"—"}</td><td class="num">${list.length?fmtDb(Math.round(s.min)):"—"}</td><td><span class="pill ${list.length?cls:''}">${list.length?cp.toFixed(0)+" %":"—"}</span></td><td>${top?esc(top[0]):"—"}</td>`;
+    tr.addEventListener("click",()=>{hiRoom=hiRoom===i?null:i; draw(); stats();});
+    tb.appendChild(tr);
+  });
+}
+let hiRoom=null;
+
+// ---- colors ----
+const RSSI_STOPS=[[-85,[178,24,43]],[-77,[240,96,60]],[-70,[253,190,90]],[-64,[200,226,110]],[-56,[96,190,100]],[-46,[26,140,80]],[-38,[0,95,70]]];
+const SINR_STOPS=[[0,[178,24,43]],[10,[240,96,60]],[18,[253,190,90]],[25,[150,210,100]],[32,[40,150,85]],[40,[0,95,70]]];
+function ramp(stops,v){
+  if(v<=stops[0][0]) return stops[0][1];
+  for(let i=1;i<stops.length;i++){ if(v<=stops[i][0]){const [a,ca]=stops[i-1],[b,cb]=stops[i];const t=(v-a)/(b-a);return [0,1,2].map(k=>Math.round(ca[k]+(cb[k]-ca[k])*t));}}
+  return stops[stops.length-1][1];
+}
+const OVER_COL=[[178,24,43],[253,190,90],[96,190,100],[30,130,150],[45,80,170]];
+function apColor(i){const h=(i*137.508)%360;return hsl2rgb(h,0.62,0.6);}
+function hsl2rgb(h,s,l){const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return [255*f(0),255*f(8),255*f(4)].map(Math.round);}
+
+// ---- drawing ----
+const cv=$("map"), ctx=cv.getContext("2d"); const off=document.createElement("canvas"); off.width=HX; off.height=HY; const octx=off.getContext("2d");
+const wallCv=document.createElement("canvas"); wallCv.width=GW; wallCv.height=GH;
+(function(){const w=wallCv.getContext("2d");const im=w.createImageData(GW,GH);const cols=[null,[17,17,17],[85,85,85],[224,32,28],[232,130,12],[11,107,224],[90,170,240]];
+  for(let i=0;i<grid.length;i++){const m=grid[i];if(!m)continue;const c=cols[m];im.data[i*4]=c[0];im.data[i*4+1]=c[1];im.data[i*4+2]=c[2];im.data[i*4+3]=255;}w.putImageData(im,0,0);})();
+const img=new Image(); let imgReady=false; img.onload=()=>{imgReady=true;draw();}; img.src=PLAN_SRC;
+let scale=1;
+function resize(){
+  const r=cv.parentElement.getBoundingClientRect(); const dpr=Math.min(window.devicePixelRatio||1,2.5);
+  const w=Math.max(280,r.width); const h=w*HM/WM; cv.style.height=h+"px";
+  cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); scale=cv.width/WM; draw();
+}
+function heatImage(){
+  const im=octx.createImageData(HX,HY); const d=im.data; const {best,sinr,cntThr,bi}=AGG; const empty=!AGG.list.length;
+  for(let c=0;c<NC;c++){
+    const o=c*4; if(cellRoom[c]===-3||empty){d[o+3]=0;continue;}
+    let col,alpha=255;
+    if(S.view==="rssi"){const v=best[c]; if(v<-90){alpha=0;col=[0,0,0];} else {const q=Math.floor(v/3)*3+1.5; col=ramp(RSSI_STOPS,q);} }
+    else if(S.view==="sinr"){const v=sinr[c]; col=ramp(SINR_STOPS,Math.floor(v/3)*3+1.5);}
+    else if(S.view==="over"){col=OVER_COL[Math.min(cntThr[c],4)];}
+    else {col=bi[c]>=0?apColor(APS.indexOf(AGG.list[bi[c]])):[0,0,0]; if(bi[c]<0)alpha=0;}
+    d[o]=col[0];d[o+1]=col[1];d[o+2]=col[2];d[o+3]=alpha;
+  }
+  octx.putImageData(im,0,0);
+}
+function draw(){
+  if(!AGG) return;
+  ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,cv.width,cv.height);
+  if(imgReady){ctx.imageSmoothingEnabled=true; ctx.drawImage(img,0,0,cv.width,cv.height);}
+  heatImage();
+  ctx.save();
+  const p=new Path2D(); p.rect(INTERIOR.x0*scale,INTERIOR.y0*scale,(INTERIOR.x1-INTERIOR.x0)*scale,(INTERIOR.y1-INTERIOR.y0)*scale);
+  VOIDS.forEach(v=>p.rect(v[0]*scale,v[1]*scale,(v[2]-v[0])*scale,(v[3]-v[1])*scale));
+  ctx.clip(p,"evenodd"); ctx.globalAlpha=S.opacity/100; ctx.imageSmoothingEnabled=S.view==="rssi"||S.view==="sinr"?true:false;
+  if(S.view==="rssi"||S.view==="sinr"){ctx.imageSmoothingQuality="high";}
+  ctx.drawImage(off,0,0,HX*HC*scale,HY*HC*scale); ctx.restore();
+  // redraw walls lightly over heat for legibility
+  if(imgReady){ctx.save();ctx.globalAlpha=0.35;ctx.globalCompositeOperation="multiply";ctx.drawImage(img,0,0,cv.width,cv.height);ctx.restore();}
+  if(S.showWalls){ctx.save();ctx.imageSmoothingEnabled=false;ctx.globalAlpha=.9;ctx.drawImage(wallCv,0,0,GW*GC*scale,GH*GC*scale);ctx.restore();}
+  if(hiRoom!==null){const R=ROOMS[hiRoom]; if(R.kind!=="pasillo"){ctx.save();ctx.strokeStyle="#2346c7";ctx.lineWidth=Math.max(2,scale*0.12);ctx.setLineDash([scale*0.4,scale*0.25]);ctx.strokeRect(R.x0*scale,R.y0*scale,(R.x1-R.x0)*scale,(R.y1-R.y0)*scale);ctx.restore();}}
+  // APs
+  const r=Math.max(9,scale*0.55); const fsz=Math.max(10,r*0.95);
+  APS.forEach((a,i)=>{
+    const on=S.band==="5"?a.on5:a.on24; const x=a.x*scale,y=a.y*scale;
+    ctx.save();
+    if(sel===a){ctx.beginPath();ctx.arc(x,y,r*1.7,0,Math.PI*2);ctx.fillStyle="rgba(35,70,199,.18)";ctx.fill();ctx.lineWidth=Math.max(2,r*0.2);ctx.strokeStyle="#2346c7";ctx.stroke();}
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+    if(S.view==="serv"&&on){const c=apColor(i);ctx.fillStyle=`rgb(${c[0]*.55|0},${c[1]*.55|0},${c[2]*.55|0})`;} else ctx.fillStyle=on?"#16202c":"#8a94a3";
+    ctx.fill(); ctx.lineWidth=Math.max(1.5,r*0.18); ctx.strokeStyle="#ffffff"; ctx.stroke();
+    ctx.fillStyle="#ffffff"; ctx.font=`600 ${fsz*0.82}px "IBM Plex Mono",monospace`; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(String(i+1),x,y+0.5);
+    const lab=on?("ch "+(S.band==="5"?a.ch5:a.ch24)):"apagado";
+    ctx.font=`600 ${fsz*0.78}px "IBM Plex Sans",sans-serif`; const tw=ctx.measureText(lab).width+fsz*0.6; const ly=y+r+fsz*0.75;
+    ctx.fillStyle="rgba(255,255,255,.9)"; roundRect(ctx,x-tw/2,ly-fsz*0.55,tw,fsz*1.1,fsz*0.3); ctx.fill();
+    ctx.fillStyle=on?"#16202c":"#6b7585"; ctx.fillText(lab,x,ly+0.5);
+    ctx.restore();
+  });
+}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+
+function legend(){
+  const rp=$("ramp"),tk=$("ticks"); rp.innerHTML="";tk.innerHTML="";
+  let cols=[],ticks=[],title="";
+  if(S.view==="rssi"){title="Señal (dBm)";for(let v=-88;v<=-40;v+=3)cols.push(ramp(RSSI_STOPS,v+1.5));ticks=["−88","−76","−67","−55","−40"];}
+  else if(S.view==="sinr"){title="SINR (dB)";for(let v=0;v<=42;v+=3)cols.push(ramp(SINR_STOPS,v+1.5));ticks=["0","10","20","30","42"];}
+  else if(S.view==="over"){title="APs ≥ "+fmtDb(S.thr)+" dBm";cols=OVER_COL;ticks=["0","1","2","3","4+"];}
+  else {title="Color por AP";cols=APS.slice(0,12).map((a,i)=>apColor(i));ticks=["cada color es el AP con mejor señal"];}
+  $("legTitle").textContent=title;
+  cols.forEach(c=>{const s=document.createElement("span");s.style.background=`rgb(${c})`;rp.appendChild(s);});
+  ticks.forEach(t=>{const s=document.createElement("span");s.textContent=t;tk.appendChild(s);});
+}
+
+// ---- interaction ----
+function toM(e){const r=cv.getBoundingClientRect();return {x:(e.clientX-r.left)/r.width*WM,y:(e.clientY-r.top)/r.height*HM};}
+function hit(p){const rr=Math.max(0.9,(Math.max(9,scale*0.55)*1.2)/scale);let best=null,bd=1e9;APS.forEach(a=>{const d=Math.hypot(a.x-p.x,a.y-p.y);if(d<rr&&d<bd){bd=d;best=a;}});return best;}
+let drag=null; let raf=0;
+cv.addEventListener("pointerdown",e=>{
+  const p=toM(e); const a=hit(p);
+  if(mode==="del"){ if(a){removeAp(a);} return; }
+  if(mode==="add"&&!a){ if(!insideUsable(p.x,p.y)){toast("Pon el AP dentro del piso, fuera de los vacíos.");return;} const n=mkAp("AP "+String(nextId).padStart(2,"0"),p.x,p.y); autoChFor(n); APS.push(n); select(n); recompute(); save(); return; }
+  if(a){select(a); drag={a,dx:a.x-p.x,dy:a.y-p.y,moved:false}; cv.setPointerCapture(e.pointerId); cv.classList.add("dragging");}
+  else {select(null);}
+  probe(p);
+});
+cv.addEventListener("pointermove",e=>{
+  const p=toM(e);
+  if(drag){ const nx=clamp(p.x+drag.dx,INTERIOR.x0+0.2,INTERIOR.x1-0.2), ny=clamp(p.y+drag.dy,INTERIOR.y0+0.2,INTERIOR.y1-0.2); drag.a.x=nx; drag.a.y=ny; drag.moved=true; drag.a.cnt=null; drag.a.sig={};
+    if(!raf) raf=requestAnimationFrame(()=>{raf=0; recompute(); fillForm();}); }
+  probe(p);
+});
+const endDrag=e=>{ if(drag){ cv.classList.remove("dragging"); if(drag.moved) save(); drag=null; } };
+cv.addEventListener("pointerup",endDrag); cv.addEventListener("pointercancel",endDrag);
+cv.addEventListener("pointerleave",()=>{ if(!drag) $("readout").textContent="Pasa el cursor o toca el plano para ver la señal en ese punto."; });
+function insideUsable(x,y){ if(x<INTERIOR.x0||x>INTERIOR.x1||y<INTERIOR.y0||y>INTERIOR.y1) return false; return !VOIDS.some(v=>inR(x,y,v)); }
+function probe(p){
+  if(!AGG) return; const i=Math.floor(p.x/HC),j=Math.floor(p.y/HC); if(i<0||j<0||i>=HX||j>=HY) return; const c=j*HX+i; const r=cellRoom[c];
+  const where=r===-3?"Fuera del edificio":r===-2?"Vacío / escalera / ascensores":ROOMS[r].kind==="pasillo"?"Pasillo o hall":"Sala "+roomName(ROOMS[r].name);
+  let txt=`x ${p.x.toFixed(1)} m · y ${p.y.toFixed(1)} m — ${where}`;
+  if(r>=-2&&AGG.bi[c]>=0){ const a=AGG.list[AGG.bi[c]]; const ch=S.band==="5"?a.ch5:a.ch24;
+    txt+=` · <b>${fmtDb(Math.round(AGG.best[c]))} dBm</b> desde ${esc(a.name)} (ch ${ch}) · SINR ${Math.round(AGG.sinr[c])} dB · ${AGG.cntThr[c]} AP${AGG.cntThr[c]===1?"":"s"} ≥ ${fmtDb(S.thr)} dBm`; }
+  else if(r>=-2) txt+=" · sin APs activos en esta banda";
+  $("readout").innerHTML=txt;
+}
+document.addEventListener("keydown",e=>{
+  if(!sel) return; const t=e.target; if(t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA"||t.tagName==="SELECT")) return;
+  const st=e.shiftKey?1:0.1; let mv=false;
+  if(e.key==="ArrowLeft"){sel.x-=st;mv=true}else if(e.key==="ArrowRight"){sel.x+=st;mv=true}else if(e.key==="ArrowUp"){sel.y-=st;mv=true}else if(e.key==="ArrowDown"){sel.y+=st;mv=true}
+  else if(e.key==="Delete"||e.key==="Backspace"){removeAp(sel);e.preventDefault();return;}
+  if(mv){e.preventDefault(); sel.x=clamp(sel.x,INTERIOR.x0+.2,INTERIOR.x1-.2); sel.y=clamp(sel.y,INTERIOR.y0+.2,INTERIOR.y1-.2); sel.cnt=null; sel.sig={}; recompute(); fillForm(); save();}
+});
+function removeAp(a){ APS=APS.filter(x=>x!==a); if(sel===a) select(null); recompute(); save(); toast(a.name+" quitado"); }
+function select(a){ sel=a; fillForm(); draw(); }
+
+// ---- form ----
+function fillForm(){
+  const has=!!sel; $("apEmpty").hidden=has; $("apForm").hidden=!has; if(!has) return;
+  $("apName").value=sel.name; $("on5").checked=sel.on5; $("on24").checked=sel.on24;
+  $("p5").value=sel.p5; $("p5v").textContent=sel.p5+" dBm"; $("p24").value=sel.p24; $("p24v").textContent=sel.p24+" dBm";
+  fillCh(); $("box5").classList.toggle("off",!sel.on5); $("box24").classList.toggle("off",!sel.on24);
+  $("apPos").textContent=`x ${sel.x.toFixed(1)} m · y ${sel.y.toFixed(1)} m · PIRE 5 GHz ${sel.p5+GAIN["5"]} dBm`;
+}
+function fillCh(){
+  const s5=$("ch5"); s5.innerHTML=CH5[S.width5].map(c=>`<option value="${c}">${chLabel5(c,S.width5)}</option>`).join(""); s5.value=sel.ch5;
+  const s24=$("ch24"); s24.innerHTML=CH24.map(c=>`<option value="${c}">${c}</option>`).join(""); s24.value=sel.ch24;
+}
+$("apName").addEventListener("input",e=>{ if(sel){sel.name=e.target.value||"AP"; stats(); save();} });
+$("on5").addEventListener("change",e=>{ if(sel){sel.on5=e.target.checked; fillForm(); recompute(); save();} });
+$("on24").addEventListener("change",e=>{ if(sel){sel.on24=e.target.checked; fillForm(); recompute(); save();} });
+$("p5").addEventListener("input",e=>{ if(sel){sel.p5=+e.target.value; sel.sig={}; fillForm(); recompute(); save();} });
+$("p24").addEventListener("input",e=>{ if(sel){sel.p24=+e.target.value; sel.sig={}; fillForm(); recompute(); save();} });
+$("ch5").addEventListener("change",e=>{ if(sel){sel.ch5=+e.target.value; recompute(); save();} });
+$("ch24").addEventListener("change",e=>{ if(sel){sel.ch24=+e.target.value; recompute(); save();} });
+$("apDelete").addEventListener("click",()=>{ if(sel) removeAp(sel); });
+
+// ---- auto channel ----
+function interfW(a,b,band){ const s=signal(b,band); const i=clamp(Math.floor(a.x/HC),0,HX-1), j=clamp(Math.floor(a.y/HC),0,HY-1); return Math.pow(10,s[j*HX+i]/10); }
+function autoChannels(band){
+  const list=APS.filter(a=>band==="5"?a.on5:a.on24); if(!list.length) return;
+  let chans=band==="5"?CH5[S.width5].slice():CH24.slice(); if(band==="5"&&S.noDfs) chans=chans.filter(c=>!isDfs(c));
+  const rot=Math.round((FL-3)*chans.length/3); chans=chans.slice(rot).concat(chans.slice(0,rot));
+  const W=list.map(a=>list.map(b=>a===b?0:interfW(a,b,band)));
+  const order=list.map((a,i)=>i).sort((x,y)=>W[y].reduce((s,v)=>s+v,0)-W[x].reduce((s,v)=>s+v,0));
+  const asg=new Array(list.length).fill(null);
+  for(let pass=0;pass<3;pass++){
+    for(const i of order){
+      let bestC=chans[0],bestCost=Infinity;
+      chans.forEach((c,ci)=>{ let cost=0; asg.forEach((ac,k)=>{ if(ac!==null&&k!==i&&overlap(band,ac,c)) cost+=W[i][k]+W[k][i]; }); cost+=ci*1e-15; if(cost<bestCost){bestCost=cost;bestC=c;} });
+      asg[i]=bestC;
+    }
+  }
+  list.forEach((a,i)=>{ if(band==="5") a.ch5=asg[i]; else a.ch24=asg[i]; });
+}
+function autoChFor(n){
+  const band="5"; let chans=CH5[S.width5].slice(); if(S.noDfs) chans=chans.filter(c=>!isDfs(c));
+  let bestC=chans[0],bd=-1; chans.forEach(c=>{ let md=1e9; APS.forEach(a=>{ if(a.on5&&a.ch5===c) md=Math.min(md,Math.hypot(a.x-n.x,a.y-n.y)); }); if(md>bd){bd=md;bestC=c;} });
+  n.ch5=bestC; let b24=1,bd2=-1; CH24.forEach(c=>{let md=1e9;APS.forEach(a=>{if(a.on24&&a.ch24===c)md=Math.min(md,Math.hypot(a.x-n.x,a.y-n.y));}); if(md>bd2){bd2=md;b24=c;}}); n.ch24=b24;
+}
+$("btnAuto").addEventListener("click",()=>{ busy(()=>{ autoChannels("5"); autoChannels("24"); recompute(); fillForm(); save(); toast("Canales asignados en 5 y 2,4 GHz"); }); });
+
+// ---- settings ----
+function bindSeg(ids,key,vals,after){ ids.forEach((id,k)=>$(id).addEventListener("click",()=>{ S[key]=vals[k]; ids.forEach((x,m)=>$(x).setAttribute("aria-pressed",String(m===k))); after&&after(); save(); })); }
+bindSeg(["b5","b24"],"band",["5","24"],()=>{recompute();});
+bindSeg(["vRssi","vSinr","vOver","vServ"],"view",["rssi","sinr","over","serv"],()=>{legend();draw();});
+["mMove","mAdd","mDel"].forEach((id,k)=>$(id).addEventListener("click",()=>{ mode=["move","add","del"][k]; ["mMove","mAdd","mDel"].forEach((x,m)=>$(x).setAttribute("aria-pressed",String(m===k))); cv.classList.toggle("adding",mode==="add"); cv.classList.toggle("deleting",mode==="del"); }));
+$("thr").addEventListener("change",e=>{S.thr=+e.target.value; recompute(); legend(); save();});
+$("width5").addEventListener("change",e=>{ S.width5=+e.target.value; const L=CH5[S.width5]; APS.forEach(a=>{ if(!L.includes(a.ch5)){ a.ch5=L.reduce((p,c)=>Math.abs(c-a.ch5)<Math.abs(p-a.ch5)?c:p,L[0]); } }); fillForm(); recompute(); save(); });
+$("noDfs").addEventListener("change",e=>{S.noDfs=e.target.checked; save();});
+$("inclBath").addEventListener("change",e=>{S.inclBath=e.target.checked; stats(); save();});
+$("showWalls").addEventListener("change",e=>{S.showWalls=e.target.checked; draw(); save();});
+$("opacity").addEventListener("input",e=>{S.opacity=+e.target.value; draw(); save();});
+$("nExp").addEventListener("input",e=>{S.n=+e.target.value; $("nExpV").textContent=S.n.toFixed(1); invalidateSig(); recompute(); save();});
+$("noise").addEventListener("input",e=>{S.noise=+e.target.value; $("noiseV").textContent=S.noise+" dBm"; recompute(); save();});
+$("apH").addEventListener("change",e=>{S.apH=clamp(+e.target.value||3,2,6); invalidateSig(); recompute(); save();});
+$("cliH").addEventListener("change",e=>{S.cliH=clamp(+e.target.value||1.2,0.5,2); invalidateSig(); recompute(); save();});
+function lossTable(){
+  $("lossBody").innerHTML=MATS.map(m=>`<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${m.col};margin-right:6px;vertical-align:-1px"></span>${m.name}</td><td><input type="number" id="l24_${m.id}" min="0" max="40" step="0.5" value="${S.loss[m.id]["24"]}" aria-label="${m.name} 2,4 GHz"></td><td><input type="number" id="l5_${m.id}" min="0" max="40" step="0.5" value="${S.loss[m.id]["5"]}" aria-label="${m.name} 5 GHz"></td></tr>`).join("");
+  MATS.forEach(m=>{ ["24","5"].forEach(b=>{ $(`l${b}_${m.id}`).addEventListener("change",e=>{ S.loss[m.id][b]=clamp(+e.target.value||0,0,40); invalidateSig(); recompute(); save(); }); }); });
+}
+function syncControls(){
+  $("thr").value=S.thr; $("width5").value=S.width5; $("noDfs").checked=S.noDfs; $("inclBath").checked=S.inclBath; $("showWalls").checked=S.showWalls; $("opacity").value=S.opacity;
+  $("nExp").value=S.n; $("nExpV").textContent=(+S.n).toFixed(1); $("noise").value=S.noise; $("noiseV").textContent=S.noise+" dBm"; $("apH").value=S.apH; $("cliH").value=S.cliH;
+  [["b5","5"],["b24","24"]].forEach(([id,v])=>$(id).setAttribute("aria-pressed",String(S.band===v)));
+  [["vRssi","rssi"],["vSinr","sinr"],["vOver","over"],["vServ","serv"]].forEach(([id,v])=>$(id).setAttribute("aria-pressed",String(S.view===v)));
+  lossTable(); legend();
+}
+
+// ---- presets, io ----
+$("btnPreset").addEventListener("click",()=>{ busy(()=>{ APS=presetAps(); select(null); recompute(); autoChannels("5"); autoChannels("24"); recompute(); save(); toast("Diseño sugerido cargado en el piso "+FL+": 21 APs"); }); });
+$("btnClear").addEventListener("click",()=>{ if(!clearArm){clearArm=true; $("btnClear").textContent="Toca otra vez para vaciar"; setTimeout(()=>{clearArm=false;$("btnClear").textContent="Vaciar plano";},2500); return;} clearArm=false; $("btnClear").textContent="Vaciar plano"; APS=[]; select(null); recompute(); save(); toast("Plano vacío. Usa Añadir AP para empezar."); });
+let clearArm=false;
+function apsOut(list){ return list.map(a=>({nombre:a.name,x_m:+a.x.toFixed(2),y_m:+a.y.toFixed(2),radio5:a.on5,canal5:a.ch5,potencia5_dBm:a.p5,radio24:a.on24,canal24:a.ch24,potencia24_dBm:a.p24})); }
+function totalAps(){ return FLOORS.reduce((t,f)=>t+(f===FL?APS.length:(DESIGNS[f]?DESIGNS[f].length:0)),0); }
+function exportObj(){ return {plano:"Planta tipo pisos 3, 4 y 5 - Piso "+FL,piso:FL,ap_modelo:"Huawei AirEngine 5761-11",ajustes:{umbral:S.thr,ancho5:S.width5,n:S.n,ruido:S.noise,alturaAP:S.apH,alturaUsuario:S.cliH,perdidas:S.loss},aps:APS.map(a=>({nombre:a.name,x_m:+a.x.toFixed(2),y_m:+a.y.toFixed(2),radio5:a.on5,canal5:a.ch5,potencia5_dBm:a.p5,radio24:a.on24,canal24:a.ch24,potencia24_dBm:a.p24}))}; }
+$("btnCopyJson").addEventListener("click",()=>copy(JSON.stringify(exportObj(),null,1),"JSON copiado"));
+$("btnCopyCsv").addEventListener("click",()=>{ stash(); const rows=[["Piso","#","Nombre","x (m)","y (m)","5 GHz","Canal 5","Pot. 5 (dBm)","2,4 GHz","Canal 2,4","Pot. 2,4 (dBm)"]]; FLOORS.forEach(f=>(DESIGNS[f]||[]).forEach((a,i)=>rows.push([f,i+1,a.name,a.x.toFixed(1),a.y.toFixed(1),a.on5?"Sí":"No",a.ch5,a.p5,a.on24?"Sí":"No",a.ch24,a.p24]))); copy(rows.map(r=>r.join("\t")).join("\n"),"Tabla copiada. Pégala en Excel."); });
+$("btnImport").addEventListener("click",()=>{ try{ const o=JSON.parse($("io").value); applyImport(o); toast("Diseño importado: "+APS.length+" APs"); }catch(err){ toast("No pude leer ese JSON. Pega el texto completo que copiaste con Copiar JSON."); } });
+function applyImport(o){
+  if(o.ajustes){ const a=o.ajustes; if(a.umbral)S.thr=+a.umbral; if(a.ancho5)S.width5=+a.ancho5; if(a.n)S.n=+a.n; if(a.ruido)S.noise=+a.ruido; if(a.alturaAP)S.apH=+a.alturaAP; if(a.alturaUsuario)S.cliH=+a.alturaUsuario; if(a.perdidas)S.loss=a.perdidas; }
+  if(!Array.isArray(o.aps)) throw new Error("sin aps");
+  nextId=1; APS=o.aps.map(p=>mkAp(p.nombre||"AP",+p.x_m,+p.y_m,{on5:p.radio5!==false,on24:!!p.radio24,p5:+p.potencia5_dBm||17,p24:+p.potencia24_dBm||11,ch5:+p.canal5||36,ch24:+p.canal24||1}));
+  select(null); syncControls(); recompute(); save();
+}
+function stash(){ DESIGNS[FL]=APS; }
+function save(){ stash(); try{ const fl={}; FLOORS.forEach(f=>fl[f]=apsOut(DESIGNS[f]||[])); localStorage.setItem(STORE,JSON.stringify({S,FL,fl})); }catch(e){} }
+function fromOut(arr){ nextId=1; return (arr||[]).map(p=>mkAp(p.nombre,+p.x_m,+p.y_m,{on5:p.radio5,on24:p.radio24,p5:p.potencia5_dBm,p24:p.potencia24_dBm,ch5:p.canal5,ch24:p.canal24})); }
+function load(){ try{ const t=localStorage.getItem(STORE); if(!t) return false; const o=JSON.parse(t); if(o.S) S=Object.assign(JSON.parse(JSON.stringify(DEF_SETTINGS)),o.S); if(!o.fl) return false; FLOORS.forEach(f=>DESIGNS[f]=fromOut(o.fl[f])); FL=FLOORS.includes(o.FL)?o.FL:3; APS=DESIGNS[FL]; return true; }catch(e){ return false; } }
+function setFloor(f){ stash(); FL=f; APS=DESIGNS[f]||[]; FLOORS.forEach(x=>$("fl"+x).setAttribute("aria-pressed",String(x===f))); $("hFloor").textContent="Piso "+f; select(null); recompute(); save(); }
+FLOORS.forEach(f=>$("fl"+f).addEventListener("click",()=>{ if(f!==FL) busy(()=>setFloor(f)); }));
+
+// ---- utils ----
+function $(id){return document.getElementById(id);}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function fmtDb(v){return String(v).replace("-","−");}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+let tt=0; function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600);}
+function copy(text,msg){ const done=()=>toast(msg); try{ navigator.clipboard.writeText(text).then(done,()=>fallback()); }catch(e){ fallback(); } function fallback(){ const io=$("io"); io.value=text; io.closest("details").open=true; io.focus(); io.select(); toast("Selecciona el texto del cuadro y cópialo"); } }
+function busy(fn){ $("busy").hidden=false; setTimeout(()=>{ try{fn();}finally{ $("busy").hidden=true; } },20); }
+function recompute(){ aggregate(); draw(); }
+
+// ---- boot ----
+const had=load();
+syncControls();
+new ResizeObserver(()=>resize()).observe(cv.parentElement);
+busy(()=>{
+  if(!had){ FLOORS.forEach(f=>{ FL=f; APS=presetAps(); aggregate(); autoChannels("5"); autoChannels("24"); DESIGNS[f]=APS; }); FL=3; APS=DESIGNS[3]; }
+  FLOORS.forEach(x=>$("fl"+x).setAttribute("aria-pressed",String(x===FL))); $("hFloor").textContent="Piso "+FL;
+  recompute(); save(); resize(); });
+})();
+</script>
+
+</body></html>
