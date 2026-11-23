@@ -2,6 +2,9 @@
 
 Site survey **predictivo** de los pisos 3, 4 y 5 de Duoc UC sede Viña del Mar, hecho para el proyecto semestral de TRY1101 Tecnología de Redes Inalámbricas (Fase 2: red WiFi).
 
+> [!IMPORTANT]
+> Este trabajo se hizo **a modo de laboratorio**, con una herramienta propia y un modelo simplificado. Los resultados sirven para dimensionar y justificar el diseño, pero no reemplazan un estudio profesional. Para mayor precisión, ver la sección 8.
+
 ## 1. Objetivo
 
 Dar cobertura WiFi a los tres pisos con calidad suficiente para voz y video en salas, oficinas y pasillos:
@@ -94,3 +97,16 @@ Otras vistas: [vista general](capturas/01_vista_general.png), [piso 4](capturas/
 - No calcula la interferencia entre pisos. Esa se reduce rotando los canales de cada piso.
 - No modela reflexiones ni el efecto de las personas en la sala, que con la sala llena puede restar entre 3 y 6 dB.
 - Después de instalar se debe hacer un **site survey pasivo** (por ejemplo con NetSpot o Ekahau) para confirmar la señal y el SINR, y ajustar potencia y canales desde la controladora Huawei.
+
+## 8. Recomendación: herramientas oficiales
+
+Esta herramienta se construyó como **laboratorio académico** para entender y mostrar cómo se calcula la cobertura. Para un proyecto real se recomienda:
+
+| Etapa | Herramienta recomendada | Por qué |
+|---|---|---|
+| Diseño predictivo | **Huawei WLAN Planner** (oficial del fabricante) | Trae los patrones de radiación reales del AirEngine 5761-11, la biblioteca de materiales y genera el informe de cobertura y el listado de equipos |
+| Diseño predictivo (multimarca) | Ekahau AI Pro, Hamina o iBwave | Son el estándar de la industria: modelan en 3D, consideran la interferencia entre pisos y la capacidad por usuario |
+| Validación en terreno | Ekahau Sidekick / Survey, NetSpot o AirMagnet | Miden la señal, el SINR y el roaming reales una vez instalados los APs |
+| Ajuste en operación | iMaster NCE-Campus o la controladora WAC (radio calibration) | Ajustan canales y potencia automáticamente según el entorno real |
+
+En resumen, esta herramienta sirve para un primer dimensionamiento y como apoyo docente. El diseño final se debe confirmar con una herramienta oficial y con mediciones en terreno.

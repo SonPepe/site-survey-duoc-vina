@@ -23,7 +23,14 @@ Simula la cobertura WiFi de los pisos 3, 4 y 5 con 21 APs Huawei AirEngine 5761-
 | Área con SINR ≥ 25 dB | 98,9 % | 63,4 % |
 | APs con radio activa | 21 | 6 |
 
-> La señal se calcula con pérdida por distancia y por muro. Es una predicción de diseño y se valida midiendo en terreno después de instalar.
+> [!IMPORTANT]
+> **Herramienta de laboratorio.** Este site survey se hizo como ejercicio académico (lab) para el ramo TRY1101. Usa un modelo simplificado (pérdida por distancia y por muro) con valores de atenuación típicos, no medidos en el edificio, así que sus resultados son referenciales.
+>
+> Para un diseño real con mayor precisión se recomienda usar herramientas profesionales u oficiales:
+> - **Huawei WLAN Planner**: la herramienta oficial del fabricante, con los patrones de antena reales del AirEngine 5761-11.
+> - **Ekahau AI Pro**, **Hamina** o **iBwave**: diseño predictivo profesional.
+>
+> Después de instalar, también se recomienda hacer un **site survey en terreno** (pasivo y activo) con Ekahau Sidekick, NetSpot o similar.
 
 ## Documentación
 
